@@ -18,7 +18,14 @@
     </head>
 
     <body>
-        {% block body %}{% endblock %}
+        {% include "shared/header.html.twig" %}
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% include "shared/footer.html.twig" %}
+
 
         <script src="{{ asset('js/main.js') }}"></script>
         {% block javascripts %}{% endblock %}
