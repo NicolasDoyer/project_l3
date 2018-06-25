@@ -13,3 +13,11 @@ security_logout:
 register:
     path: /register
     controller: App\Controller\RegistrationController::registerAction
+
+team_create:
+    path: /team/create
+    controller: App\Controller\TeamController::createaction
+
+team_join:
+    path: /team/join/
+    controller: App\Controller\TeamController::joinAction
