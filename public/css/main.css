@@ -2,26 +2,24 @@ html, body{
     margin: 0;
 }
 
-.title{
-    text-align: center;
+form button {
+    margin-left: 1em;
 }
 
 footer {
-    margin-top: 50px;
-    text-align: center;
+    width: 100%;
+    background-color: #3e4551;
+    color: white;
 }
 
-.center-block {
-    margin: 0 auto;
+h6 strong {
+    color: #ff3547;
 }
 
-.post {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.footer-copyright {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.post-image {
-    max-width: 300px;
-    height: 200px;
-    object-fit: cover;
+.footer-link {
+    color: white;
 }
