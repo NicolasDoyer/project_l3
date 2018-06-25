@@ -23,3 +23,14 @@ h6 strong {
 .footer-link {
     color: white;
 }
+
+.jumbotron{
+    background: url(https://source.unsplash.com/1600x1050/?football);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color:white !important;
+    height:320px;
+    border-radius: 0 !important;
+}
