@@ -3,3 +3,5 @@
 ## Description
 
 Projet portant sur la réalisation d'un symfony 4 de paris sportifs (Coupe du monde de football 2018)
+
+![MCD](./mcd.png)
