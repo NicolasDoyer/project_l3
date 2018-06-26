@@ -14,6 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class RankingController extends Controller
 {
     public function view(){
+
+        if($this->getUser()->getTeam() == null){
+            $this->addFlash('error', "Il vous faut un groupe pour accéder à d'autres pages !");
+            return $this->redirectToRoute('index');
+        }
+
         $rank = $this->getUser()->getTeam()->getUsers()->toArray();
 
         usort($rank, function ($a,$b){
