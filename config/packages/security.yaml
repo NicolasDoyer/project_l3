@@ -29,3 +29,6 @@ security:
                 target: index
 
     access_control:
+        - { path: ^/rank, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/matches, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
