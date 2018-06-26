@@ -34,6 +34,7 @@ class TeamController extends Controller {
             $em->persist($user);
             $em->flush();
 
+            $this->addFlash('success', "Le groupe {$team->getName()} a bien été créé.");
             return $this->redirectToRoute('index');
         }
     }
@@ -51,10 +52,10 @@ class TeamController extends Controller {
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success','Team joined !');
+            $this->addFlash('success',"Vous avez bien rejoint le groupe {$team->getName()} !");
         }
         else{
-            $this->addFlash('error', 'Tag does not exist');
+            $this->addFlash('error', "Le tag \"{$teamTag}\" n'existe pas.");
         }
 
         return $this->redirectToRoute('index');

@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,15 +15,31 @@
                     <a class="nav-link" href="/">Matchs</a>
                 </li>
             </ul>
-            <form class="form-inline">
-                <a class="btn btn-outline-success my-2 my-sm-0" type="submit" href="{{ path('security_login') }}" >Sign in</a>
-                <a class="btn btn-outline-info my-2 my-sm-0" type="submit" href="{{ path('register') }}" >Sign up</a>
-            </form>
+            {% if not app.user %}
+              <form class="form-inline">
+                  <a class="btn btn-outline-success" href="{{ path('security_login') }}" >
+                    <i class="fas fa-sign-in-alt"></i>  Connection
+                  </a>
+                  <a class="btn btn-outline-info" href="{{ path('register') }}" >
+                    <i class="fas fa-user-plus"></i> Inscription
+                  </a>
+              </form>
+            {% else %}
+              <form class="form-inline">
+                  <a class="btn btn-outline-dark" href="{{ path('index') }}" >
+                     <i class="fas fa-user"></i> {{app.user.username}}
+                  </a>
+                  <a class="btn btn-outline-danger" href="{{ path('security_logout') }}">
+                     <i class="fas fa-sign-out-alt"></i> Déconnexion
+                  </a>
+              </form>
+            {% endif %}
         </div>
     </nav>
     <div id="header" class="jumbotron">
-        <h2>Chips-biere.fr</h2>
-        <em>Site de paris en ligne</em>
+        <div class="container">
+            <h1 class="display-2">Chips-Bière</h1>
+            <p class="lead">Des chips, de la bière et des paris en ligne sur les matchs de la coupe du monde de Football.</p>
+        </div>
     </div>
 </header>
-
