@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -55,6 +57,16 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer", nullable=true, options={"default":0})
      */
     private $score = 0;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pari", mappedBy="user", orphanRemoval=true)
+     */
+    private $paris;
+
+    public function __construct()
+    {
+        $this->paris = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -167,6 +179,37 @@ class User implements UserInterface, \Serializable
     public function setScore(?int $score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pari[]
+     */
+    public function getParis(): Collection
+    {
+        return $this->paris;
+    }
+
+    public function addPari(Pari $pari): self
+    {
+        if (!$this->paris->contains($pari)) {
+            $this->paris[] = $pari;
+            $pari->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePari(Pari $pari): self
+    {
+        if ($this->paris->contains($pari)) {
+            $this->paris->removeElement($pari);
+            // set the owning side to null (unless already changed)
+            if ($pari->getUser() === $this) {
+                $pari->setUser(null);
+            }
+        }
 
         return $this;
     }

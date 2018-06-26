@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Match {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/match.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+
+        <!--Table head-->
+        <thead>
+        <tr>
+            <th>&Eacute;quipe 1</th>
+            <th>&Eacute;quipe 2</th>
+            <th>Score</th>
+            <th>Live</th>
+            <th>Parier</th>
+        </tr>
+        </thead>
+        <!--Table head-->
+
+        <tbody>
+        {% for match in matches %}
+            <tr>
+                <td class="team1">{{ match.team1 }}</td>
+                <td class="team2">{{ match.team2 }}</td>
+                {%  if match.score is not null %}
+                {%  set finished = true %}
+                <td>{{ match.score[0]}} - {{ match.score[1] }}</td>
+                {% else %}
+                {%  set finished = false %}
+                <td class="score"><input type="number" name="team1"> - <input type="number" name="team2"></td>
+                {% endif %}
+                {% if match.live %}
+                <td>En live</td>
+                {% elseif finished%}
+                <td>Terminé</td>
+                {% else %}
+                <td class="date">{{ match.date }}</td>
+                {% endif %}
+                {% if finished %}
+                <td></td>
+                {% else %}
+                <td><button class="pari">Parier</button></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{%  endblock %}

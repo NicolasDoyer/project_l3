@@ -25,3 +25,11 @@ team_join:
 rank:
     path: /rank
     controller: App\Controller\RankingController::view
+
+matches:
+    path: /matches
+    controller: App\Controller\MatchController::index
+
+pari_create:
+    path: /pari/create
+    controller: App\Controller\PariController::create
