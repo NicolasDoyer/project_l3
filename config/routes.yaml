@@ -21,3 +21,7 @@ team_create:
 team_join:
     path: /team/join/
     controller: App\Controller\TeamController::joinAction
+
+rank:
+    path: /rank
+    controller: App\Controller\RankingController::view
