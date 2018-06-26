@@ -14,6 +14,10 @@ use TheSeer\Tokenizer\Exception;
 class MatchController extends Controller {
 
     function index(Request $request) {
+        if($this->getUser()->getTeam() == null){
+            $this->addFlash('error', "Il vous faut un groupe pour accéder à d'autres pages !");
+            return $this->redirectToRoute('index');
+        }
        $matches = MatchApi::getMatches();
        return $this->render('match.html.twig', array( 'matches' => $matches));
     }
