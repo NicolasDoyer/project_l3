@@ -3,13 +3,17 @@ html, body{
 }
 
 form button {
-    margin-left: 1em;
+    margin-right: 1em;
 }
 
 footer {
     width: 100%;
     background-color: #3e4551;
     color: white;
+}
+
+header nav.navbar a.btn {
+  margin-left: 1em;
 }
 
 h6 strong {
@@ -22,4 +26,23 @@ h6 strong {
 
 .footer-link {
     color: white;
+}
+
+.btn i {
+  margin: 0.1em;
+}
+
+.jumbotron {
+    background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.4),
+      rgba(255, 255, 255, 0.1)
+    ),url(https://source.unsplash.com/collection/2037084);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color:white !important;
+    text-shadow: 3px 3px 3px black;
+    height:450px;
+    border-radius: 0 !important;
 }
