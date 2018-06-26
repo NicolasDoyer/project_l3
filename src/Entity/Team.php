@@ -31,7 +31,7 @@ class Team
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="team_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="team")
      */
     private $users;
 
@@ -88,7 +88,7 @@ class Team
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setTeamId($this);
+            $user->setTeam($this);
         }
 
         return $this;
@@ -99,8 +99,8 @@ class Team
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getTeamId() === $this) {
-                $user->setTeamId(null);
+            if ($user->getTeam() === $this) {
+                $user->setTeam(null);
             }
         }
 
