@@ -51,6 +51,11 @@ class User implements UserInterface, \Serializable
      */
     private $team;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"default":0})
+     */
+    private $score = 0;
+
     public function getId()
     {
         return $this->id;
@@ -150,6 +155,18 @@ class User implements UserInterface, \Serializable
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(?int $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }
