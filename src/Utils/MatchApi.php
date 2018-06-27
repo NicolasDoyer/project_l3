@@ -4,6 +4,7 @@ namespace App\Utils;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use SebastianBergmann\Comparator\DateTimeComparator;
 
 class MatchApi{
 
@@ -19,7 +20,7 @@ class MatchApi{
 
             foreach ($result as $data){
                 $team1 = array_keys($data)[0];
-                $timstamp = date_create_from_format("d/m/Y|", $data[$team1]['date'])->getTimestamp();
+                $timstamp = date_create_from_format("d/m/Y+|", $data[$team1]['date'])->getTimestamp();
                 $betClosed = (time() > $timstamp);
 
                 array_push($matches,array(

@@ -36,7 +36,7 @@ h6 strong {
     background: linear-gradient(to right,
       rgba(0, 0, 0, 0.4),
       rgba(255, 255, 255, 0.1)
-    ),url(https://source.unsplash.com/collection/2037084);
+    ),url(https://source.unsplash.com/collection/2037084/1200x450);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -49,4 +49,12 @@ h6 strong {
 
 .score input{
     width: 80px;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.label {
+    font-weight: bold;
 }
