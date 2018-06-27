@@ -38,6 +38,11 @@ class Pari
      */
     private $id_match;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $result;
+
     public function getId()
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Pari
     public function setIdMatch(string $id_match): self
     {
         $this->id_match = $id_match;
+
+        return $this;
+    }
+
+    public function getResult(): ?int
+    {
+        return $this->result;
+    }
+
+    public function setResult(?int $result): self
+    {
+        $this->result = $result;
 
         return $this;
     }

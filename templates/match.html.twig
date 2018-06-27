@@ -44,7 +44,7 @@
                     Terminé
                     {% endif %}
                 </td>
-                <td>0</td>
+                <td>{{ (match.pari_result is defined) ? match.pari_result : 0 }}</td>
                 <td><button class="pari" {% if match.betClosed %} disabled="true" {% endif %} data-match_id="{{ match.team1 }}_{{ match.team2 }}_{{ match.timestamp }}">
                         {% if match.pari_team1 is defined and match.pari_team2 is defined %}
                         Modifier votre pari
