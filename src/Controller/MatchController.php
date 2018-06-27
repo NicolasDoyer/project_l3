@@ -7,6 +7,7 @@ use App\Form\TeamType;
 use App\Utils\MatchApi;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TheSeer\Tokenizer\Exception;
@@ -41,9 +42,15 @@ class MatchController extends Controller
         return $this->render('match.html.twig', array('matches' => $matches));
     }
 
-    function getFromId(Request $request)
-    {
-        return new Response('ok');
+    function getFromId(Request $request) {
+        $id = $request->request->get('id');
+        $matches = MatchApi::getMatches();
+        foreach ($matches as $match) {
+            if($match['match_id'] == $id) {
+                return  new JsonResponse($match);
+            }
+        }
+        return new JsonResponse(array("error" => $id));
     }
 
     public function updateUserScore($user)
@@ -68,6 +75,8 @@ class MatchController extends Controller
                             $noWinnerPari = true;
                         }
 
+
+
                         if (!$noWinnerMatch)
                             $winnerMatch = ($match['score'][0] > $match['score'][1]) ? 0 : 1;
                         if (!$noWinnerPari)
@@ -82,7 +91,7 @@ class MatchController extends Controller
                             $scoreToAdd += 5;
                             $pari->setResult(5);
                         } // mal parié
-                        elseif ($noWinnerPari && !$noWinnerMatch || !$noWinnerMatch && $noWinnerPari) {
+                        else {
                             $pari->setResult(0);
                         }
 
