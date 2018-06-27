@@ -32,15 +32,6 @@ class MatchApi{
                     "betClosed" => $betClosed
                 ));
             }
-            array_push($matches, array(
-                "team1" => 'France',
-                "team2" => 'Espagne',
-                "score" => null,
-                "live"  => false,
-                "date"  => '28/06/2018',
-                "timestamp" => date_create_from_format("d/m/Y|", '28/06/2018')->getTimestamp(),
-                "betClosed" => false
-            ));
             return $matches;
 
         }catch(GuzzleException $e){
