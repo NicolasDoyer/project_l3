@@ -30,6 +30,10 @@ matches:
     path: /matches
     controller: App\Controller\MatchController::index
 
+matches_getfromid:
+    path: /matches/getfromid
+    controller: App\Controller\MatchController::getFromId
+
 pari_create:
     path: /pari/create
     controller: App\Controller\PariController::create

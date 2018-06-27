@@ -19,12 +19,17 @@ class MatchApi{
 
             foreach ($result as $data){
                 $team1 = array_keys($data)[0];
+                $timstamp = date_create_from_format("d/m/Y|", $data[$team1]['date'])->getTimestamp();
+                $betClosed = (time() > $timstamp);
+
                 array_push($matches,array(
                     "team1" => $team1,
                     "team2" => $data[$team1]['vs'],
                     "score" => $data[$team1]['score'],
                     "live"  => $data[$team1]['live'],
-                    "date"  => $data[$team1]['date']
+                    "date"  => $data[$team1]['date'],
+                    "timestamp" => $timstamp,
+                    "betClosed" => $betClosed
                 ));
             }
             array_push($matches, array(
@@ -32,7 +37,9 @@ class MatchApi{
                 "team2" => 'Espagne',
                 "score" => null,
                 "live"  => false,
-                "date"  => '01/01/2019'
+                "date"  => '28/06/2018',
+                "timestamp" => date_create_from_format("d/m/Y|", '28/06/2018')->getTimestamp(),
+                "betClosed" => false
             ));
             return $matches;
 
