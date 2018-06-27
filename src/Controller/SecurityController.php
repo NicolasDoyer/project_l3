@@ -12,7 +12,7 @@ class SecurityController extends AbstractController{
 
     $authError = $helper->getLastAuthenticationError();
     if($authError) {
-      $this->addFlash('error', 'Mot de passe ou  email invalide');
+      $this->addFlash('error', 'Mot de passe ou  login invalide');
     }
     return $this->render('Security/login.html.twig', [
       'last_username' => $helper->getLastUsername()

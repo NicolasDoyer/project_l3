@@ -15,6 +15,8 @@ class RankingController extends Controller
 {
     public function view(){
 
+        $team = $this->getUser()->getTeam();
+
         if($this->getUser()->getTeam() == null){
             $this->addFlash('error', "Il vous faut un groupe pour accéder à d'autres pages !");
             return $this->redirectToRoute('index');

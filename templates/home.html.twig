@@ -51,7 +51,14 @@
       </div>
       {% else %}
       {# Utilisateur connecté et dans un groupe #}
-
+      <div class="row featurette">
+          <div class="col-md-12">
+              <h2 class="featurette-heading">Salut {{ app.user.username }}</h2>
+              <p class="lead">
+                Votre score actuel est de : {{ app.user.score }}
+              </p>
+          </div>
+      </div>
 
       {% endif %}
     {% else %}

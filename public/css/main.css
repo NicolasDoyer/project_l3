@@ -50,3 +50,11 @@ h6 strong {
 .score input{
     width: 80px;
 }
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.label {
+    font-weight: bold;
+}
