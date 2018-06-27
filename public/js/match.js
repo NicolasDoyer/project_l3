@@ -14,24 +14,30 @@ $(document).ready(function(){
         let data = {team1,team2,score_team1,score_team2,date};
 
         $.post("/pari/create", data, function(response){
-            data = JSON.parse(response);
+            let alertClass = response.success ? 'alert alert-success alert-dismissible' : 'alert alert-danger alert-dismissible';
             row.find('button.pari').text('Modifier votre pari');
-            if(Object.getOwnPropertyNames(data)[0] === "success"){
-                $('body .container:eq(1)').prepend(
-                    "<div class=\"alert alert-success alert-dismissible\">\n" +
-                    "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
-                    data.success+
-                    "            </div>"
-                );
+            let message
+            switch (response.type) {
+                case 'created':
+                    message = 'Votre pari a bien été créer';
+                    break;
+                case 'updated':
+                    message = 'Votre pari a bien été modifier';
+                    break;
+                case 'closed':
+                    message = 'Les paris sur ce match sont fermés';
+                    break;
+                default:
+                    message = 'Erreur interne';
             }
-            else if(Object.getOwnPropertyNames(data)[0] === "error"){
-                $('body .container:eq(1)').prepend(
-                    "<div class=\"alert alert-danger alert-dismissible\">\n" +
-                    "                <a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>\n" +
-                    data.error+
-                    "            </div>"
-                );
-            }
+
+
+            $('body .container:eq(1)').prepend(
+                `<div class="${alertClass}">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    ${message}
+                </div>`
+            );
         })
     });
 
