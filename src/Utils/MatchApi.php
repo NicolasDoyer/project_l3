@@ -10,7 +10,7 @@ class MatchApi{
 
     static private $base_url = "http://daudenthun.fr/api/";
 
-    public static function getMatches(){
+    public static function getMatches() : array {
 
         $client = new Client();
         try{
@@ -30,7 +30,8 @@ class MatchApi{
                     "live"  => $data[$team1]['live'],
                     "date"  => $data[$team1]['date'],
                     "timestamp" => $timstamp,
-                    "betClosed" => $betClosed
+                    "betClosed" => $betClosed,
+                    "match_id" => $team1 . '_' . $data[$team1]['vs'] . '_' . $timstamp
                 ));
             }
             return $matches;

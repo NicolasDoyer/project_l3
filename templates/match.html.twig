@@ -27,24 +27,24 @@
 
         <tbody>
         {% for match in matches %}
-            <tr {% if match.live %} class="liveon" {% endif %}>
+            <tr  id="{{ match.match_id }}" {% if match.live %} class="liveon"{% endif %}>
                 <td class="team1">{{ match.team1 }}</td>
                 <td class="team2">{{ match.team2 }}</td>
-                <td class="score" width="200">
+                <td class="pari" width="200">
                     <input type="number" name="team1" value="{{ (match.pari_team1 is defined) ? match.pari_team1 : null }}">
                     -
                     <input type="number" name="team2" value="{{ (match.pari_team2 is defined) ? match.pari_team2 : null }}"></td>
-                <td>{{ (match.score is null) ? ' Prochainement ... ' : match.score[0] ~ " - " ~ match.score[1] }}</td>
+                <td class="score">{{ (match.score is null) ? ' Prochainement ... ' : match.score[0] ~ " - " ~ match.score[1] }}</td>
                 <td class="date">
                     {% if match.live %}
-                    En live ...
+                    En live <i class="fas fa-spinner"></i>
                     {% elseif match.score is null %}
                     {{ match.date }}
                     {% else %}
                     Terminé
                     {% endif %}
                 </td>
-                <td>{{ (match.pari_result is defined) ? match.pari_result : 0 }}</td>
+                <td>{{ (match.pari_result is defined and match.pari_result) ? match.pari_result : 0 }}</td>
                 <td><button class="pari" {% if match.betClosed %} disabled="true" {% endif %} data-match_id="{{ match.team1 }}_{{ match.team2 }}_{{ match.timestamp }}">
                         {% if match.pari_team1 is defined and match.pari_team2 is defined %}
                         Modifier votre pari
