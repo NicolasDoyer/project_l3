@@ -8,7 +8,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('index') }}">Accueil</a>
                 </li>
-                {% if app.user.team %}
+                {% if app.user and app.user.team %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('rank') }}">Classement</a>
                 </li>
