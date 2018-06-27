@@ -22,6 +22,30 @@ team_join:
     path: /team/join/
     controller: App\Controller\TeamController::joinAction
 
+team_leave:
+    path: /team/leave/
+    controller: App\Controller\TeamController::leaveAction
+
 rank:
     path: /rank
     controller: App\Controller\RankingController::view
+
+profile:
+    path: /profile
+    controller: App\Controller\ProfileController::index
+
+delete_profile:
+  path: /profile/delete
+  controller: App\Controller\ProfileController::deleteAction
+
+matches:
+    path: /matches
+    controller: App\Controller\MatchController::index
+
+matches_getfromid:
+    path: /matches/getfromid
+    controller: App\Controller\MatchController::getFromId
+
+pari_create:
+    path: /pari/create
+    controller: App\Controller\PariController::create

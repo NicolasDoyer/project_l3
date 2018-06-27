@@ -60,4 +60,17 @@ class TeamController extends Controller {
 
         return $this->redirectToRoute('index');
     }
+
+    public function leaveAction(Request $request) {
+
+        $user = $this->getUser();
+        $user->setTeam(null);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('success',"Vous avez bien quitté votre groupe !");
+
+        return $this->redirectToRoute('index');
+    }
 }

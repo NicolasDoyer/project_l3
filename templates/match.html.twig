@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Match {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/match.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+
+        <!--Table head-->
+        <thead>
+        <tr>
+            <th>&Eacute;quipe 1</th>
+            <th>&Eacute;quipe 2</th>
+            <th>Votre pari</th>
+            <th>Score</th>
+            <th>Live</th>
+            <th>Points remportés</th>
+            <th>Parier</th>
+        </tr>
+        </thead>
+        <!--Table head-->
+
+        <tbody>
+        {% for match in matches %}
+            <tr  id="{{ match.match_id }}" {% if match.live %} class="liveon"{% endif %}>
+                <td class="team1">{{ match.team1 }}</td>
+                <td class="team2">{{ match.team2 }}</td>
+                <td class="pari" width="200">
+                    <input type="number" name="team1" value="{{ (match.pari_team1 is defined) ? match.pari_team1 : null }}">
+                    -
+                    <input type="number" name="team2" value="{{ (match.pari_team2 is defined) ? match.pari_team2 : null }}"></td>
+                <td class="score">{{ (match.score is null) ? ' Prochainement ... ' : match.score[0] ~ " - " ~ match.score[1] }}</td>
+                <td class="date">
+                    {% if match.live %}
+                    En live <i class="fas fa-spinner"></i>
+                    {% elseif match.score is null %}
+                    {{ match.date }}
+                    {% else %}
+                    Terminé
+                    {% endif %}
+                </td>
+                <td>{{ (match.pari_result is defined and match.pari_result) ? match.pari_result : 0 }}</td>
+                <td><button class="pari" {% if match.betClosed %} disabled="true" {% endif %} data-match_id="{{ match.team1 }}_{{ match.team2 }}_{{ match.timestamp }}">
+                        {% if match.pari_team1 is defined and match.pari_team2 is defined %}
+                        Modifier votre pari
+                        {% else %}
+                        Parier
+                        {% endif %}
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{%  endblock %}
